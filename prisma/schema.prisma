@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model SistemaSolar {
+  id    Int     @id @default(autoincrement())
+  nombre_sistema String
+  radio_sistema Float
+  satelites_sistema Int
+  nombre_sol String
+  plantetas Planeta[]
+}
+
+model Planeta {
+  id        Int      @id @default(autoincrement())
+  nombre_planeta String
+  radio_planeta Float
+  duracion_dia Int
+  lunas Int
+  es_habitable Boolean
+  sistemaId Int
+  sistema  SistemaSolar  @relation(fields: [sistemaId], references: [id])
+}
