@@ -29,7 +29,7 @@ export default function editarSistema(props: any) {
     const router = useRouter();
 
     const controlarSubmitRHF = async (data: any) => {
-        const response = await realizarCambio(JSON.stringify(data), props.lista[0].id_sistema, props.lista[0].id)
+        const response = await realizarCambio(JSON.stringify(data), props.lista[0].sistemaId, props.lista[0].id)
         toast.success('El planeta ha sido editado correctamente 👍',);
         console.log(response)
         await (500)
@@ -233,8 +233,8 @@ export default function editarSistema(props: any) {
                                 onBlur={onBlur}
                                 defaultValue={props.lista[0].es_habitable ? 1 : 0}
                             >
-                                <FormControlLabel value="1" control={<Radio/>} label="Si"/>
-                                <FormControlLabel value="0" control={<Radio/>} label="No"/>
+                                <FormControlLabel value="true" control={<Radio/>} label="Si"/>
+                                <FormControlLabel value="false" control={<Radio/>} label="No"/>
                             </RadioGroup>
 
 

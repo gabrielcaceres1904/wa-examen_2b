@@ -37,7 +37,7 @@ export default function index(props: Props) {
 
     const handleCloseYes = async () => {
         setOpen(false);
-        console.log(await borrarSistema(router.query.sistemaSolarId,JSON.stringify(id_planeta)))
+        await borrarSistema(router.query.sistemaSolarId,JSON.stringify(id_planeta))
         location.reload();
     };
 
@@ -109,11 +109,11 @@ export default function index(props: Props) {
                     <TableBody>
                         {props.lista.map((row) => (
                             <TableRow
-                                key={row.id_planeta}
+                                key={row.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.id_planeta}
+                                    {row.id}
                                 </TableCell>
                                 <TableCell align="center">{row.nombre_planeta}</TableCell>
                                 <TableCell align="center">{row.radio_planeta}</TableCell>
@@ -126,7 +126,7 @@ export default function index(props: Props) {
                                     <Button
                                         variant="contained"
                                         onClick={() => {
-                                            setId_planeta(row.id_planeta)
+                                            setId_planeta(row.id)
                                             handleClickOpen()
                                         }}
                                     >
@@ -195,7 +195,7 @@ export async function getServerSideProps(context: any) {
 
 export async function borrarSistema(id_sistema: any,id_planeta:any) {
 
-    const response = await fetch("http://localhost:3000/api/sistemaSolar/" + id_sistema+"/"+id_planeta, {
+    const response = await fetch("http://localhost:3000/api/sistemas/" + id_sistema+"/"+id_planeta, {
         method: 'DELETE',
     });
 

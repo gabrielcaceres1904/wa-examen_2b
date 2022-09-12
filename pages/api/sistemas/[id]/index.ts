@@ -38,10 +38,11 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
         case "DELETE":
 
-            const planeta_d = await prisma.sistemaSolar.delete({
-                where: {id: parseInt(query.id[0])},
+            const sistema_d = await prisma.sistemaSolar.delete({
+                where: { id: Number(query.id)
+                },
             })
-            res.json(planeta_d)
+            res.json(sistema_d)
             break;
 
         default:

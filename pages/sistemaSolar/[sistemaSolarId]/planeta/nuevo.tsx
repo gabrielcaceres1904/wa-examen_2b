@@ -6,9 +6,10 @@ import {
     FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography
 } from "@mui/material";
 import {toast} from "react-hot-toast";
-import Layout from "../../../../../../../Documents/rest-nextjs-api-routes/components/Layout";
+
 import * as React from "react";
 import {useRouter} from "next/router";
+import Layout from "../../../../components/Layout";
 
 type FormularioSistemaSolar = {
     nombre_planeta: String,
@@ -211,8 +212,8 @@ export default function nuevoPlaneta() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                             >
-                                <FormControlLabel value="1" control={<Radio/>} label="Si"/>
-                                <FormControlLabel value="0" control={<Radio/>} label="No"/>
+                                <FormControlLabel value="true" control={<Radio/>} label="Si"/>
+                                <FormControlLabel value="false" control={<Radio/>} label="No"/>
                             </RadioGroup>
 
 
@@ -260,9 +261,9 @@ export default function nuevoPlaneta() {
 }
 
 
-export async function realizarCambio(data: any, id_sistema: any) {
+export async function realizarCambio(data: any, sistemaId: any) {
 
-    const response = await fetch("http://localhost:3000/api/sistemaSolar/" + id_sistema , {
+    const response = await fetch("http://localhost:3000/api/sistemas/" + sistemaId +"/nuevo", {
         method: 'POST',
         body: data
     });

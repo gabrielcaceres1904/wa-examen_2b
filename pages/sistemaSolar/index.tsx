@@ -14,6 +14,8 @@ import * as React from 'react';
 
 import { useState } from 'react';
 import Layout from "../../components/Layout";
+import _ from 'lodash';
+
 
 
 
@@ -28,14 +30,14 @@ export default function index(props: Props) {
     let [id, setId] = useState(0);
 
 
-
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleCloseYes = async () => {
         setOpen(false);
-        console.log(await borrarSistema((id)))
+        console.log("a");
+        await borrarSistema(id);
         location.reload();
     };
 
@@ -196,7 +198,7 @@ export const getServerSideProps = async () => {
 
 export async function borrarSistema(id:any) {
 
-    const response = await fetch("http://localhost:3000/api/sistemas/"+id, {
+    const response = await fetch("http://localhost:3000/api/sistemas/"+id , {
         method: 'DELETE',
     });
 
